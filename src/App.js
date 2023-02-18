@@ -1,12 +1,16 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Display from './Display';
 
-function App() {
+const App = () => {
+  console.log("Render App");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path=":channel" element={<Display />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
