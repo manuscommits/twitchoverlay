@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
-import { useParams } from "react-router-dom";
+import useQuery from "./useQuery";
 import useTwitchChat from "./useTwitchChat";
 
 const useChatInfo = () => {
-    const { channel } = useParams();
+    const channel = useQuery();
     const [state, setState] = useState({ "names": {} });
 
     const onMessage = useCallback((channel, tags, message, self) => {

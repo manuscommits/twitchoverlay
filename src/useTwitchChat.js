@@ -17,9 +17,7 @@ const initChatConnection = async (channel, onMessage) => {
 const useTwitchChat = (channel, onMessage) => {
     useEffect(() => {
         initChatConnection(channel, onMessage);
-        console.log("useEffect in useTwitch")
     }, [channel, onMessage]);
-    console.log("useTwitchChat");
 };
 
 export default useTwitchChat;

@@ -1,5 +1,5 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Display from './Display';
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path=":channel" element={<Display />} />
+        <Route path="/" element={<Display />} />
       </Routes>
     </BrowserRouter>
   );
