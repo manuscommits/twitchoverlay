@@ -7,7 +7,7 @@ const Display = () => {
     return (
         <div className="App">
             <header className="App-header">
-                {first && first}
+                {first}
             </header>
         </div>
     );

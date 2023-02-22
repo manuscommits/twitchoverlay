@@ -4,8 +4,7 @@ const name = "channel";
 
 const useQuery = () => {
     const [searchParams] = useSearchParams();
-    searchParams.has(name) && console.log("URL parameter ", searchParams.get(name));
-    return searchParams.has(name) ? { channel: searchParams.get(name) } : undefined;
+    return searchParams.has(name) ? searchParams.get(name) : undefined;
 };
 
 export default useQuery;
