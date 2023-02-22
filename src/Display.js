@@ -1,4 +1,4 @@
-import useFirstChatter from "./useFirstChatter";
+import useFirstChatter from "./hooks/useFirstChatter";
 import Marquee from "react-fast-marquee";
 
 const Display = () => {
