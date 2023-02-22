@@ -8,7 +8,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Display />} />
+        <Route path="/twitchoverlay" element={<Display />} />
       </Routes>
     </BrowserRouter>
   );
