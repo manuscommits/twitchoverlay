@@ -1,4 +1,5 @@
 import useFirstChatter from "./useFirstChatter";
+import Marquee from "react-fast-marquee";
 
 const Display = () => {
     const first = useFirstChatter();
@@ -7,7 +8,7 @@ const Display = () => {
     return (
         <div className="App">
             <header className="App-header">
-                {first}
+                <Marquee style={{}} speed={200}>{"+++ " + first + " +++"}</Marquee>
             </header>
         </div>
     );
