@@ -5,12 +5,14 @@ import useTwitchChat from "./useTwitchChat";
 const chatterNames = "names";
 const firstChatter = "first";
 
+const timeout = 5000;
+
 const useChatInfo = () => {
     const [state, setState] = useState({ [chatterNames]: {}, [firstChatter]: undefined });
     const channel = useQuery();
 
     const resetAfterTimeout = () => {
-        setTimeout(() => setState(s => ({ ...s, [firstChatter]: undefined })), 5000);
+        setTimeout(() => setState(s => ({ ...s, [firstChatter]: undefined })), timeout);
     }
 
     const onMessage = useCallback((channel, tags, message, self) => {
