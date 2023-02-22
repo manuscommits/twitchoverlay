@@ -1,7 +1,7 @@
-import useChatInfo from "./useChatInfo";
+import useFirstChatter from "./useFirstChatter";
 
 const Display = () => {
-    const first = useChatInfo();
+    const first = useFirstChatter();
 
     console.log("Render Display", first);
     return (
