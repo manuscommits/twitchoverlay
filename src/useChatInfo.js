@@ -3,7 +3,7 @@ import useQuery from "./useQuery";
 import useTwitchChat from "./useTwitchChat";
 
 const useChatInfo = () => {
-    const channel = useQuery();
+    let { channel } = useQuery();
     const [state, setState] = useState({ "names": {}, "first": undefined });
 
     const onMessage = useCallback((channel, tags, message, self) => {

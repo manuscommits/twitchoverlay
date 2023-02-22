@@ -6,9 +6,9 @@ const App = () => {
   console.log("Render App");
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/twitchoverlay" element={<Display />} />
+        <Route path="/" element={<Display />} />
       </Routes>
     </BrowserRouter>
   );
