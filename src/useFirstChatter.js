@@ -23,13 +23,13 @@ const useFirstChatter = () => {
             resetAfterTimeout();
         }
         return newState;
-    }, []);
+    }, [resetAfterTimeout]);
 
     const onMessage = useCallback((channel, tags, message, self) => {
         const displayName = tags['display-name'];
         console.log(`${displayName}: ${message}`);
         setState((oldState) => updateStateOnMessage(oldState, displayName));
-    }, []);
+    }, [updateStateOnMessage]);
 
     useTwitchChat(channel, onMessage);
 
