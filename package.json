@@ -2,6 +2,7 @@
   "name": "twitchoverlay",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://manuscommits.github.io/twitchoverlay/",
   "dependencies": {
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
