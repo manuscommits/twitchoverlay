@@ -2,38 +2,27 @@ import { useCallback, useState } from "react";
 import useQuery from "./useQuery";
 import useTwitchChat from "./useTwitchChat";
 
-const chatterNames = "names";
-const firstChatter = "first";
-
-const timeout = 10000;
-
-const useFirstChatter = () => {
-    const [state, setState] = useState({ [chatterNames]: {}, [firstChatter]: undefined });
+const useFirstChatter = (callback) => {
+    const [, setChatters] = useState({});
     const channel = useQuery();
 
-    const resetAfterTimeout = useCallback(() =>
-        setTimeout(() => setState(oldState => ({ ...oldState, [firstChatter]: undefined })), timeout), []);
-
-    const updateStateOnMessage = useCallback((oldState, displayName) => {
-        var newState = oldState;
-        if (!oldState[firstChatter] && oldState[chatterNames][displayName] === undefined) {
-            newState = { ...oldState };
-            newState[chatterNames][displayName] = true;
-            newState[firstChatter] = displayName;
-            resetAfterTimeout();
+    const updateStateOnMessage = useCallback((oldChatters, displayName) => {
+        var newChatters = oldChatters;
+        if (oldChatters[displayName] === undefined) {
+            newChatters = { ...oldChatters };
+            newChatters[displayName] = true;
+            callback(displayName);
         }
-        return newState;
-    }, [resetAfterTimeout]);
+        return newChatters;
+    }, [callback]);
 
     const onMessage = useCallback((channel, tags, message, self) => {
         const displayName = tags['display-name'];
         console.log(`${displayName}: ${message}`);
-        setState((oldState) => updateStateOnMessage(oldState, displayName));
+        setChatters((oldChatters) => updateStateOnMessage(oldChatters, displayName));
     }, [updateStateOnMessage]);
 
     useTwitchChat(channel, onMessage);
-
-    return state[firstChatter];
 };
 
 export default useFirstChatter;
