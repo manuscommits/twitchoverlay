@@ -14,7 +14,7 @@ const Display = () => {
             <header className="App-header">
                 <Marquee style={{}} speed={10} onCycleComplete={onCycleComplete}>
                     {messageList.map((msg, index) => {
-                        return <div key={index} style={{ width:500, padding: 100 }}>{msg}</div>
+                        return <div key={index} style={{ width: 1500, padding: 100 }}>{msg}</div>
                     })}
                 </Marquee>
             </header>
