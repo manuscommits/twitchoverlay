@@ -24,7 +24,7 @@ const useTicker = () => {
         if (postillionTicker) {
             postillionTicker.forEach((message, index) => setTimeout(() => pushMessage(message), index * 10000))
         }
-    }, [postillionTicker]);
+    }, [postillionTicker, pushMessage]);
 
     useFirstChatter(pushMessage);
 
