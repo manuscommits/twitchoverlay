@@ -6,7 +6,7 @@ const corsAnywhere = "https://cors-anywhere.herokuapp.com/";
 const url = "https://www.der-postillon.com/search/label/Newsticker";
 
 const tickerSitesRegex = /https:\/\/www\.der-postillon\.com\/\d+\/\d+\/newsticker-\d+\.html/gm;
-const tickerRegex = /\+\+\+[^+<>\n{}=]+\+\+\+/gm;
+const tickerRegex = /\+\+\+[^+<>\n{}=;]+\+\+\+/gm;
 
 const findNewsSites = async () => {
     const html = await fetchWebsite(corsAnywhere + url);
@@ -22,9 +22,13 @@ const getTickerMessages = async () => {
         const tickerMessages = findAllMatches(html, tickerRegex);
         return tickerMessages;
     }))
-    const flatMessages = allTickerMessages.flatMap((tickers) => tickers);
-    console.log("found ticker", flatMessages);
-    return flatMessages;
+    const flatMessages = allTickerMessages
+        .flatMap((tickers) => tickers)
+        .map(decodeURI);
+
+    const uniqueMessages = [...new Set(flatMessages)];
+    console.log("found ticker", uniqueMessages);
+    return uniqueMessages;
 };
 
 const usePostillion = () => {
