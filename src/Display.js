@@ -12,9 +12,9 @@ const Display = () => {
     return (
         <div className="App">
             <header className="App-header">
-                <Marquee style={{}} speed={200} onCycleComplete={onCycleComplete}>
+                <Marquee style={{}} speed={10} onCycleComplete={onCycleComplete}>
                     {messageList.map((msg, index) => {
-                        return <div key={index}>{"+++ " + msg + " +++"}</div>
+                        return <div key={index} style={{ padding: 100 }}>{msg}</div>
                     })}
                 </Marquee>
             </header>
