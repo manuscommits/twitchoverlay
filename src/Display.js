@@ -11,13 +11,11 @@ const Display = () => {
     console.log("Render Display", messageList);
     return (
         <div className="App">
-            <header className="App-header">
-                <Marquee style={{}} speed={10} onCycleComplete={onCycleComplete}>
-                    {messageList.map((msg, index) => {
-                        return <div key={index} style={{ width: 1500, padding: 100 }}>{msg}</div>
-                    })}
-                </Marquee>
-            </header>
+            <Marquee style={{}} speed={50} onCycleComplete={onCycleComplete}>
+                {messageList.map((msg, index) => {
+                    return <div key={index} style={{ width: 1500, paddingRight: 100 }}>{msg}</div>
+                })}
+            </Marquee>
         </div>
     );
 };
