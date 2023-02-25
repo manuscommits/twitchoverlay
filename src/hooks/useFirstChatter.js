@@ -18,7 +18,7 @@ const useFirstChatter = (callback) => {
 
     const onMessage = useCallback((channel, tags, message, self) => {
         const displayName = tags['display-name'];
-        console.log(`${displayName}: ${message}`);
+        // console.log(`${displayName}: ${message}`);
         setChatters((oldChatters) => updateStateOnMessage(oldChatters, displayName));
     }, [updateStateOnMessage]);
 
