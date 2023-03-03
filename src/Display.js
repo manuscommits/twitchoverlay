@@ -2,11 +2,7 @@ import Marquee from "react-fast-marquee";
 import useTicker from "./hooks/useTicker";
 
 const Display = () => {
-    const messageList = useTicker();
-
-    const onCycleComplete = () => {
-
-    }
+    const { messageList, onCycleComplete } = useTicker();
 
     console.log("Render Display", messageList);
     return (

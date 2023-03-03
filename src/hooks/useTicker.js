@@ -1,33 +1,41 @@
-import { useCallback, useEffect, useState } from "react";
-import useFirstChatter from "./useFirstChatter";
-import usePostillion from "./usePostillion";
+import { useCallback, useState } from "react";
+import { nullArrayWithLength } from "../utils/jsUtils";
+import useFirstChatterBuffer from "./useFirstChatterBuffer";
+import usePostillonBuffer from "./usePostillonBuffer";
 
-const maxMessages = 8;
-const preFilledArray = Array.apply(null, Array(maxMessages)).map(i => i);
-const tickerTimeInterval = 30000;
+const maxMessages = 4;
+const preFilledArray = nullArrayWithLength(maxMessages);
+const prefix = "+++ ";
+const suffix = " +++";
+const maxCycles = 2;
 
 const useTicker = () => {
-    const [state, setMessageList] = useState({ messageList: preFilledArray, index: 0 });
-    const postillionTicker = usePostillion();
+    const [, setCycleCountner] = useState(0);
+    const [messageList, setMessageList] = useState(preFilledArray);
 
-    const pushMessage = useCallback((message) => {
-        console.log("pushMessage", message);
-        setMessageList(oldState => {
-            const newMessageList = [...oldState.messageList];
-            newMessageList[oldState.index] = message;
-            return { messageList: newMessageList, index: (oldState.index + 1) % maxMessages };
+    const { getNextFirstChatters } = useFirstChatterBuffer();
+    const { getNextPostillonTickers } = usePostillonBuffer();
+
+    const updateMessages = useCallback(() => {
+        const newFirstChatters = getNextFirstChatters(maxMessages);
+        const postillonTickers = getNextPostillonTickers(maxMessages - newFirstChatters.length);
+        const emptySlots = nullArrayWithLength(maxMessages - newFirstChatters.length - postillonTickers.length);
+        const newMessageList = newFirstChatters
+            .concat(postillonTickers)
+            .map(message => prefix + message + suffix)
+            .concat(emptySlots);
+        console.log("Updating ticker messages!", newMessageList);
+        setMessageList(newMessageList);
+    }, [getNextFirstChatters, getNextPostillonTickers]);
+
+    const onCycleComplete = useCallback(() => {
+        setCycleCountner((oldCycleCoutner) => {
+            if (oldCycleCoutner % maxCycles === 0) updateMessages();
+            return oldCycleCoutner + 1;
         });
-    }, []);
+    }, [setCycleCountner, updateMessages]);
 
-    useEffect(() => {
-        if (postillionTicker) {
-            postillionTicker.forEach((message, index) => setTimeout(() => pushMessage(message), index * tickerTimeInterval))
-        }
-    }, [postillionTicker, pushMessage]);
-
-    useFirstChatter(pushMessage);
-
-    return state.messageList;
+    return { messageList, onCycleComplete };
 };
 
 export default useTicker;
