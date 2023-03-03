@@ -7,7 +7,7 @@ const url = "https://www.der-postillon.com/search/label/Newsticker";
 
 const tickerSitesRegex = /https:\/\/www\.der-postillon\.com\/\d+\/\d+\/newsticker-\d+\.html/gm;
 const tickerRegex = /\+\+\+[^+<>\n{}=;]+\+\+\+/gm;
-const maxSites = 2;
+const maxSites = undefined;
 
 const findNewsSites = async () => {
     const html = await fetchWebsite(corsAnywhere + url);
