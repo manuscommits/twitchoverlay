@@ -11,7 +11,7 @@ const Display = () => {
     console.log("Render Display", messageList);
     return (
         <div className="App">
-            <Marquee style={{}} speed={50} onCycleComplete={onCycleComplete}>
+            <Marquee gradient={false} style={{}} speed={50} onCycleComplete={onCycleComplete}>
                 {messageList.map((msg, index) => {
                     return <div key={index} style={{ width: 1500, paddingRight: 100 }}>{msg}</div>
                 })}
