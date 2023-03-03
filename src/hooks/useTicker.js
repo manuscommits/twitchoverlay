@@ -2,8 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import useFirstChatter from "./useFirstChatter";
 import usePostillion from "./usePostillion";
 
-const maxMessages = 6;
+const maxMessages = 8;
 const preFilledArray = Array.apply(null, Array(maxMessages)).map(i => i);
+const tickerTimeInterval = 30000;
 
 const useTicker = () => {
     const [state, setMessageList] = useState({ messageList: preFilledArray, index: 0 });
@@ -20,7 +21,7 @@ const useTicker = () => {
 
     useEffect(() => {
         if (postillionTicker) {
-            postillionTicker.forEach((message, index) => setTimeout(() => pushMessage(message), index * 10000))
+            postillionTicker.forEach((message, index) => setTimeout(() => pushMessage(message), index * tickerTimeInterval))
         }
     }, [postillionTicker, pushMessage]);
 

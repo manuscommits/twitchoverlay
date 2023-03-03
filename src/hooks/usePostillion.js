@@ -24,7 +24,7 @@ const getTickerMessages = async () => {
     }))
     const flatMessages = allTickerMessages
         .flatMap((tickers) => tickers)
-        .map(decodeURI);
+        .map(decodeURIComponent);
 
     const uniqueMessages = [...new Set(flatMessages)];
     console.log("found ticker", uniqueMessages);
