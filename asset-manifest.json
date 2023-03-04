@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/twitchoverlay/static/css/main.6b6a2b1c.css",
-    "main.js": "/twitchoverlay/static/js/main.0609df7e.js",
+    "main.js": "/twitchoverlay/static/js/main.623b4709.js",
     "index.html": "/twitchoverlay/index.html",
     "main.6b6a2b1c.css.map": "/twitchoverlay/static/css/main.6b6a2b1c.css.map",
-    "main.0609df7e.js.map": "/twitchoverlay/static/js/main.0609df7e.js.map"
+    "main.623b4709.js.map": "/twitchoverlay/static/js/main.623b4709.js.map"
   },
   "entrypoints": [
     "static/css/main.6b6a2b1c.css",
-    "static/js/main.0609df7e.js"
+    "static/js/main.623b4709.js"
   ]
 }
