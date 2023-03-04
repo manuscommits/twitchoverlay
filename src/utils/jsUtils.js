@@ -3,4 +3,8 @@ const nullArrayWithLength = (n) => {
     return Array.apply(null, Array(n)).map(i => i);
 };
 
-export { nullArrayWithLength };
+const getRandomElementFromList = (list) => {
+    return list[Math.floor(Math.random() * list.length)];
+}
+
+export { nullArrayWithLength, getRandomElementFromList };
