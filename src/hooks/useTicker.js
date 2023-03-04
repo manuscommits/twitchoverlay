@@ -24,8 +24,9 @@ const useTicker = () => {
         const postillonTickers = getNextPostillonTickers(maxMessages - newFirstChatters.length);
         const emptySlots = nullArrayWithLength(maxMessages - newFirstChatters.length - postillonTickers.length);
         const newMessageList = newFirstChatters
+            .map(mapToMessage)
             .concat(postillonTickers)
-            .map(message => prefix + mapToMessage(message) + suffix)
+            .map(message => prefix + message + suffix)
             .concat(emptySlots);
         console.log("Updating ticker messages!", newMessageList);
         setMessageList(newMessageList);
